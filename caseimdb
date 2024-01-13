@@ -1,0 +1,15 @@
+#место для твоего кода
+import pandas as pd
+import matplotlib.pyplot as plt
+df=pd.read_csv('IMDB-Movie-Data.csv')
+#г1: влияние жанра на рейтинг фильма
+df[(df['Rating']>8)]['Genre'].value_counts().plot(kind='barh',figsize=(10,50),grid=True)
+plt.show()
+df[(df['Rating']<5)]['Genre'].value_counts().plot(kind='barh',figsize=(4,50),grid=True)
+plt.show()
+#ГИПОТЕЗА ПОДТВЕРЖДЕНА, жанр влияет на рейтинг
+#г2: влияние имени режисера на рейтинг
+df['Metascore'].fillna(-1,inplace=True)
+df['Director'][(df['Rating']>8)].value_counts().plot(kind='barh',figsize=(4,50),grid=True)
+plt.show()
+#ГИПОТЕЗА ПОДТВЕРЖДЕНА, имя режисера влияет на рейтинг
